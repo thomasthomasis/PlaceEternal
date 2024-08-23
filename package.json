@@ -1,0 +1,21 @@
+{
+  "name": "placeeternal",
+  "version": "1.0.0",
+  "description": "This is the readme file for the Place Eternal project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-ws": "^5.0.2",
+    "socket.io": "^4.7.5",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "ws": "^8.18.0"
+  }
+}

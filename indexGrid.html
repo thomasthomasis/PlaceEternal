@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Socket.IO chat</title>
+        <style>
+            body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+            #grid { width: 100%; display: flex; flex-direction: row; justify-content: center;}
+            #grid div { width: 50px; height: 50px; background-color: #FFF; border: 1px solid gray;}
+       
+        </style>
+    </head>
+
+    
+    <body>
+        <div id="grid">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </body>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io({
+          auth: {
+            serverOffset: 0
+          }
+        });
+
+        const cells = document.querySelectorAll("#grid div")
+        for(let i = 0; i < cells.length; i++)
+        {
+            cells[i].addEventListener('click', (e) => {
+                socket.emit('chat message', 'value change', i);
+
+                if(cells[i].style.backgroundColor == "#FFF")
+                {
+                    cells[i].style.backgroundColor = "black";
+                }
+                else
+                {
+                    cells[i].style.backgroundColor = "#FFF";
+                }
+                
+            });
+        }
+      
+        
+      
+        socket.on('chat message', (msg, serverOffset) => {
+          const item = document.createElement('li');
+          item.textContent = msg;
+          if(cells[i].style.backgroundColor == "#FFF")
+            {
+                cells[i].style.backgroundColor = "black";
+            }
+            else
+            {
+                cells[i].style.backgroundColor = "#FFF";
+            }
+          window.scrollTo(0, document.body.scrollHeight);
+          socket.auth.serverOffset = serverOffset;
+        });
+    </script>
+
+</html>
